@@ -1,0 +1,23 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    route.openshift.io/termination: passthrough
+  name: company-sso-route
+  labels:
+    app: keycloak
+    app.kubernetes.io/instance: rhbk
+    app.kubernetes.io/managed-by: keycloak-operator
+spec:
+  host: companysso.apps.cluster-7zh66.dynamic.redhatworkshops.io
+  to:
+    kind: Service
+    name: rhbk-service
+    weight: 100
+  port:
+    targetPort: https
+  tls:
+    termination: passthrough
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None

@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - operator/01.operator-group.yml
+  - operator/02.operator-subscription.yml
+  - instance/secret/01.rhbk-tls-secret.yml
+  - instance/secret/02.rhbk-db-secret.yml
+  - instance/01.rhbk.yml
+  - instance/02.rhbk-update-route.yml

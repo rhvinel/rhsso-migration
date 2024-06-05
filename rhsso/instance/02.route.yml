@@ -1,0 +1,21 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: company-sso-route
+  namespace: sso
+  labels:
+    app: keycloak
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"route.openshift.io/v1","kind":"Route","metadata":{"annotations":{},"name":"company-sso-route","namespace":"sso"},"spec":{"host":"companysso.apps.cluster-7zh66.dynamic.redhatworkshops.io","port":{"targetPort":"http"},"tls":{"insecureEdgeTerminationPolicy":"Redirect","termination":"edge"},"to":{"kind":"Service","name":"keycloak"}}}
+spec:
+  host: companysso.apps.cluster-7zh66.dynamic.redhatworkshops.io
+  to:
+    kind: Service
+    name: keycloak
+    weight: 100
+  port:
+    targetPort: keycloak
+  tls:
+    termination: reencrypt
+  wildcardPolicy: None

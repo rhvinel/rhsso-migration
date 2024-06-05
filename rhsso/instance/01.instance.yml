@@ -1,0 +1,17 @@
+apiVersion: keycloak.org/v1alpha1
+kind: Keycloak
+metadata:
+  name: company-sso
+  labels:
+    app: company-sso
+  namespace: sso
+spec:
+  externalDatabase:
+    enabled: true
+  externalAccess:
+    enabled: true
+  keycloakDeploymentSpec:
+    imagePullPolicy: Always
+  postgresDeploymentSpec:
+    imagePullPolicy: Always
+  instances: 1
